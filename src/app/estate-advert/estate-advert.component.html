@@ -1,0 +1,128 @@
+<app-header></app-header>
+<div class="content">
+
+<h1 style="margin-top: 15px;">Geçmiş Haberler</h1>
+<button mat-stroked-button  (click)="openDialog()" style="margin-bottom: 15px; color: #84bd7f;">Ekle</button> 
+
+<ng-template #lessonDialog>
+    <h2 mat-dialog-title>Kategori Ekle</h2>
+    <mat-dialog-content>
+        <label>Haber Başlığı:</label><br>
+        <input type="text" [(ngModel)]="haberler.newsTitle" name="newsTitle" matInput>
+    </mat-dialog-content>
+    <br>
+    <mat-dialog-content>
+        <label>Haber Detay:</label><br>
+        <textarea type="text" [(ngModel)]="haberler.newsDetail" name="newsDetail" matInput></textarea>
+    </mat-dialog-content>
+    <!-- <br>
+    <mat-dialog-content>
+        <label>haber Fiyatı:</label><br>
+        <input type="text" [(ngModel)]="haberler.haberFiyati" name="haberFiyati" matInput>
+    </mat-dialog-content>
+    <br> -->
+    <mat-dialog-content>
+        <label>Haber Resim:</label><br>
+        <input type="text" [(ngModel)]="haberler.newsPhoto" name="newsPhoto" matInput>
+    </mat-dialog-content>
+    <br>
+    <mat-dialog-content>
+        <label>Kategori:</label><br>
+        <select  [(ngModel)]="haberler.newsCategoryId" name="newsCategoryId" matInput>
+          <option *ngFor="let item of kategoriler" [value]="item.id">{{ item.kategoriAdi }}</option>
+        </select>
+      </mat-dialog-content>
+      
+    <br>
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>İptal</button>
+        <button mat-button color="primary" type="submit" (click)="addNews()">Ekle</button>
+    </mat-dialog-actions>
+</ng-template>
+
+
+
+<!-- Tablo -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Sütun tanımları -->
+    <ng-container matColumnDef="newsTitle">
+      <th mat-header-cell *matHeaderCellDef>Haber H</th>
+      <td mat-cell *matCellDef="let haberler">{{ haberler.newsTitle }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="newsDetail">
+      <th mat-header-cell *matHeaderCellDef>Haber Detay</th>
+      <td mat-cell *matCellDef="let haberler">{{ haberler.newsDetail }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="haberFiyati">
+      <th mat-header-cell *matHeaderCellDef>Haber Fiyat</th>
+      <td mat-cell *matCellDef="let haberler">{{ haberler.haberFiyati }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="newsPhoto">
+      <th mat-header-cell *matHeaderCellDef>Haber Resim</th>
+      <td mat-cell *matCellDef="let haberler">{{ haberler.newsPhoto }}</td>
+    </ng-container>
+    
+  
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let haberler">
+          <button mat-icon-button color="primary" (click)="openEditDialog(haberler)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteNews(haberler.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+    </ng-container>
+  
+    <!-- Sütunlar -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let haberler; columns: displayedColumns"></tr>
+  </table>
+  
+
+
+
+<ng-template #editLessonDialog>
+    <h2 mat-dialog-title>Kullanıcı Düzenle</h2>
+    <mat-dialog-content>
+        <label>haberler:</label><br>
+        <input type="text" [(ngModel)]="haberler.newsTitle" name="newsTitle" matInput>
+    </mat-dialog-content>
+    <br>
+    <mat-dialog-content>
+        <label>Haber Detay:</label><br>
+        <textarea type="text" [(ngModel)]="haberler.newsDetail" name="newsDetail" matInput></textarea>
+    </mat-dialog-content>
+    <!-- <br>
+    <mat-dialog-content>
+        <label>haber Fiyatı:</label><br>
+        <input type="text" [(ngModel)]="haberler.haberFiyati" name="haberFiyati" matInput>
+    </mat-dialog-content>
+    <br> -->
+    <mat-dialog-content>
+        <label>haber Resim:</label><br>
+        <input type="text" [(ngModel)]="haberler.newsPhoto" name="newsPhoto" matInput>
+    </mat-dialog-content>
+    <br>
+    <mat-dialog-content>
+        <label>Kategori:</label><br>
+        <select  [(ngModel)]="haberler.newsCategoryId" name="newsCategoryId" matInput>
+          <option *ngFor="let item of kategoriler" [value]="item.id">{{ item.kategoriAdi }}</option>
+        </select>
+      </mat-dialog-content>
+    <br>
+
+    
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>İptal</button>
+        <button mat-button color="primary" type="submit" (click)="updateNews()">Güncelle</button>
+    </mat-dialog-actions>
+</ng-template>
+</div>
+<app-footer></app-footer>

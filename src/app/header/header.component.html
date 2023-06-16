@@ -1,0 +1,11 @@
+
+<mat-toolbar style="background-color: #ffa224;" class="header">
+    <span>HABER PORTALI</span>
+
+    <div class="menu-link">
+        <a mat-button mat-raised-button routerLink="/haberler">haberler</a>
+        <a mat-button mat-raised-button routerLink="/kategoriler">kategoriler</a>
+        <a mat-button mat-raised-button routerLink="/kullanicilar">Kullanıcılar</a>
+        <a mat-button mat-raised-button routerLink="/giris" *ngIf="!isLoggedIn()">Giriş</a>
+    </div>
+</mat-toolbar>

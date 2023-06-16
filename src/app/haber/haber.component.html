@@ -1,0 +1,13 @@
+<div class="container news-detail" *ngIf="haber">
+  <!-- <p class="news-view-count">Bu Haber {{haber.Okunma}} Kez Okundu.</p> -->
+  <img height="600px" width="600px" class="news-image" [src]="haber.newsPhoto">
+  <div class="news-detail-content">
+    <h1 class="news-title">{{haber.newsTitle}}</h1>
+    <p class="news-meta">
+      <!-- <span><b>Tarih : </b> {{haber.Tarih | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+      <span><b>Yazan : </b> {{haber.UyeKadi}}</span> -->
+    </p>
+    <hr class="news-separator">
+    <div class="news-content" [innerHTML]="haber.newsDetail"> </div>
+  </div>
+  <hr class="news-separator">
